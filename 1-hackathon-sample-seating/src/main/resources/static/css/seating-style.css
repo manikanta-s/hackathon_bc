@@ -98,3 +98,7 @@ span.seatCharts-legendDescription {
 	overflow-x: none;
 	width: 170px;
 }
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}

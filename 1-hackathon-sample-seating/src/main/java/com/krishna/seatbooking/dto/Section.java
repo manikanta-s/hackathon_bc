@@ -22,6 +22,7 @@ public class Section {
 
 	private String name;
 	private String layoutInfo;
+	private Double cost;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "section", cascade = CascadeType.ALL, orphanRemoval = true)
