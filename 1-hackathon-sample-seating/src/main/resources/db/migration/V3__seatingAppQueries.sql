@@ -1,4 +1,4 @@
-ALTER TABLE section ADD cost NUMBER(5,2);
+ALTER TABLE section ADD cost INTEGER;
 
 
 UPDATE SECTION 
