@@ -25,6 +25,8 @@
 			<c:if test="${param.error ne null}">
 				<div style="color: red">Incorrect username or password.</div>
 			</c:if>
+			
+			<div>${registrationSuccessMsg}</div>
 
 			<form action="/login" method="post">
 				<input type="text" id="username" name="username"

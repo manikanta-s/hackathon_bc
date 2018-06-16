@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.krishna.seatbooking.dto.Seat;
+import com.krishna.seatbooking.dto.Section;
 import com.krishna.seatbooking.repository.SeatRepository;
 import com.krishna.seatbooking.repository.SectionRepository;
 import com.krishna.seatbooking.service.UserDetailsServiceImpl;
@@ -38,9 +39,7 @@ public class SeatingController {
 	
 	@RequestMapping("/")
 	public String home(Model model) {
-		val x = sectionsRepository.findAll();
-		model.addAttribute("sections", x);
-		
+		model.addAttribute("sections", getAllSections());
 		return "home";
 	}
 	
@@ -60,7 +59,10 @@ public class SeatingController {
 		boolean isValidUser = userDetailsService.registerUser(request);
 		if (isValidUser) {
 			model.addAttribute("user", request.getParameter("firstname"));
-			return "home";
+//			model.addAttribute("sections", getAllSections());
+			model.addAttribute("registrationSuccessMsg", "Registration completed. Please login..");
+//			return home(model);
+			return "login";
 		}
 		return "register.html";
 	}
@@ -87,6 +89,11 @@ public class SeatingController {
 	public @ResponseBody List<Seat> seat(@PathVariable(value = "sectionId") Long sectionId, Model model) {
 		val x = seatRepository.findAllBySectionId(sectionId);
 		model.addAttribute("seats", x);
+		return x;
+	}
+	
+	private List<Section> getAllSections() {
+		val x = sectionsRepository.findAll();
 		return x;
 	}
 }
